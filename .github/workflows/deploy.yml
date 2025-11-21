@@ -1,0 +1,25 @@
+name: Deploy HTML ke GitHub Pages
+
+on:
+  push:
+    branches: [ "main" ]
+
+permissions:
+  pages: write
+  id-token: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: "."  # Semua file project akan ikut di-deploy
+
+      - name: Deploy ke GitHub Pages
+        uses: actions/deploy-pages@v2
